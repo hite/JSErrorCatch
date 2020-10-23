@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    console.log('index iframe start');
+</script>
+<script type="text/javascript">
+    console.log('iframe error start')
+    var window['$global'] = {
+        nickName: ""yaoyao""
+    }
+    console.log('iframe error end')
+</script>
+
+<!-- <iframe src="iframe.html" id="iframe"></iframe> -->
+<script type="text/javascript">
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+        var string = msg.toLowerCase();
+        var substring = "script error";
+        if (string.indexOf(substring) > -1){
+            alert(string);
+        } else {
+            var message = [
+                'Message: ' + msg,
+                'URL: ' + url,
+                'Line: ' + lineNo,
+                'Column: ' + columnNo,
+                'Error object: ' + JSON.stringify(error)
+            ].join(' - ');
+            alert(message);
+        }
+        return false;
+    };
+
+    // var h5Iframe = document.getElementById('iframe');
+    // h5Iframe.contentWindow.window.onerror = function (msg, url, lineNo, columnNo, error) {
+    //     var string = msg.toLowerCase();
+    //     var substring = "script error";
+    //     if (string.indexOf(substring) > -1){
+    //         alert('Script Error: See Browser Console for Detail');
+    //     } else {
+    //         var message = [
+    //             'Message: ' + msg,
+    //             'URL: ' + url,
+    //             'Line: ' + lineNo,
+    //             'Column: ' + columnNo,
+    //             'Error object: ' + JSON.stringify(error)
+    //         ].join(' - ');
+
+    //         alert(message);
+    //     }
+
+    //     return false;
+    // };
+</script>
+<script type="text/javascript">
+    console.log('index iframe end')
+</script>
+</html>
